@@ -1,0 +1,28 @@
+# Biblioteka math.h
+LIBS = -lm
+
+# Kompajler i njegove opcije
+CXX = g++
+CXXFLAGS = -I.
+
+# .o ovise o promjenama u .h
+DEPS = ElementaryParticle.h
+OBJ = ElementaryParticle.o analyzer.o
+
+# Pravilo za izgradnju .o iz .cpp
+%.o: %.cpp $(DEPS)
+	$(CXX) -c -o $@ $< $(CXXFLAGS)
+
+# Pravilo za izgradnju izlaznog programa
+analyzer: $(OBJ)
+	$(CXX) -o $@ $^ $(CXXFLAGS) $(LIBS)
+
+# Pravilo za brisanje .o datoteka
+clean: 
+	rm -f $(OBJ)
+
+# Osigurava dobro brisanje
+.PHONY: clean
+
+# Default target
+all: analyzer
