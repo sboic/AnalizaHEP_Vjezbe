@@ -10,11 +10,17 @@ public:
 	string particle_name;
 	double mass;
 	bool Boson;
+	double px;
+	double py;
+	double pz;
+	double Energy;
 
 
 	ElementaryParticle(string a, double b, bool c);
 	ElementaryParticle();
+
 	void printInfo();
+	void momentum(double x, double y, double z);
 };
 
 #endif
