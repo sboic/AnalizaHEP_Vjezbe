@@ -1,2 +1,5 @@
 # Ignore .exe files
-*.exe
+*/*.exe
+*/*.o
+*/analyze
+*/analyzer
