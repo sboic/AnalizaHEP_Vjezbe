@@ -24,7 +24,7 @@ int main() {
 
     for(int i = 1; i <= 10000; i++){
 
-       ElementaryParticle* higgs = new ElementaryParticle("Higgsov bozon", 125.1, true);
+       ElementaryParticle* higgs = new ElementaryParticle("Higgsov_bozon", 125.1, true);
         higgs-> setRandMomentum();
         //higgs-> setMomentum(5.0,3.0,1.0);
         //higgs-> printInfo();

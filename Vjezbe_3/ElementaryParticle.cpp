@@ -51,32 +51,32 @@ void ElementaryParticle::bosonDecay(ElementaryParticle particle1, ElementaryPart
 // raspad
 	double random = static_cast<double>(rand()) / RAND_MAX; //random od 0 do 1
 	if (random < 0.214){ // u 21.4% slucaja raspad ide preko W
-		particle1.particle_name = "W bozon";
-		particle2.particle_name = "W bozon";
+		particle1.particle_name = "W_bozon";
+		particle2.particle_name = "W_bozon";
 		particle1.mass = 80.4;
 		particle2.mass = 80.4;
 		particle1.Boson = true;
 		particle2.Boson = true;
 	}
 	else if(random < 0.278){ // u 6.4 % preko tau leptona
-		particle1.particle_name = "Tau lepton";
-		particle2.particle_name = "Tau lepton";
+		particle1.particle_name = "Tau_lepton";
+		particle2.particle_name = "Tau_lepton";
 		particle1.mass = 1.777;
 		particle2.mass = 1.777;
 		particle1.Boson = false;
 		particle2.Boson = false;
 	} 
 	else if(random < 0.304){ // u 2.6% slucaja ide preko Z bozona
-		particle1.particle_name = "Z bozon";
-		particle2.particle_name = "Z bozon";
+		particle1.particle_name = "Z_bozon";
+		particle2.particle_name = "Z_bozon";
 		particle1.mass = 91.2;
 		particle2.mass = 91.2;
 		particle1.Boson = true;
 		particle2.Boson = true;
 	}
 	else{ // sve ostalo preko b kvarkova
-		particle1.particle_name = "B kvark";
-		particle2.particle_name = "B kvark";
+		particle1.particle_name = "B_kvark";
+		particle2.particle_name = "B_kvark";
 		particle1.mass = 4.18;
 		particle2.mass = 4.18;
 		particle1.Boson = false;
