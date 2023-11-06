@@ -13,7 +13,7 @@ ElementaryParticle::ElementaryParticle() : particle_name(""), mass(0.0), Boson(f
 // Funkcije
 
 void ElementaryParticle::printInfo() {
-	cout << "Ime cestice je " << particle_name << ", mase " << mass << " i ona " << (Boson ? "je bozon." : "nije bozon.") << endl;
+	cout << "Ime cestice je " << particle_name << ", mase " << mass << " i ona " << (Boson ? "1" : "0") << endl;
 	cout << "Komponente momenta:" << "px = " << px << ", py = " << py << ", pz = " << pz << endl;
 	cout << "Ukupni moment je " << momentum << endl;
 	cout << "Energija je " << Energy << endl;
@@ -105,6 +105,6 @@ void ElementaryParticle::bosonDecay(ElementaryParticle particle1, ElementaryPart
 }
 
 void ElementaryParticle::writetofile(ofstream& outputFile){
-	outputFile << particle_name << " " << mass << " " << (Boson ? "Da" : "Ne") << " ";
+	outputFile << particle_name << " " << mass << " " << (Boson ? "1" : "0") << " ";
 	outputFile << px << " " << py << " " << pz << " " << momentum << " " << Energy << " ";
 }

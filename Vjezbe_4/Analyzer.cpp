@@ -39,7 +39,7 @@ void Analyzer::AnalyzeData(const string& filename) {
   myReadFile.close();
 }
 
-void Analyzer::ConvertTxtToRootFile(const string& inputFile, const TString& outputFile){
+void Analyzer::ConvertTxtToRootFile(const string& inputFile,const TString& outputFile){
     ifstream myReadFile;
     myReadFile.open(inputFile.c_str());
     _skipFirstLine = true;
@@ -54,7 +54,7 @@ void Analyzer::ConvertTxtToRootFile(const string& inputFile, const TString& outp
     tree->Branch("Counter",&counter,"&counter/I");
     tree->Branch("particle_name",&particle_name);
     tree->Branch("mass",&mass,"&mass/F");
-    tree->Branch("isBoson",&isBoson);
+    tree->Branch("isBoson",&isBoson,"&isBoson/I" );
     tree->Branch("px",&px,"&px/F");
     tree->Branch("py",&py,"&py/F");
     tree->Branch("pz",&pz,"&pz/F");
@@ -63,7 +63,7 @@ void Analyzer::ConvertTxtToRootFile(const string& inputFile, const TString& outp
 
     tree->Branch("particle_name1", &particle_name1);
     tree->Branch("mass1", &mass1, "mass1/F");
-    tree->Branch("isBoson1", &isBoson1);
+    tree->Branch("isBoson1", &isBoson1,"&isBoson/I");
     tree->Branch("px1", &px1, "px1/F");
     tree->Branch("py1", &py1, "py1/F");
     tree->Branch("pz1", &pz1, "pz1/F");
@@ -72,7 +72,7 @@ void Analyzer::ConvertTxtToRootFile(const string& inputFile, const TString& outp
 
     tree->Branch("particle_name2", &particle_name2);
     tree->Branch("mass2", &mass2, "mass2/F");
-    tree->Branch("isBoson2", &isBoson2);
+    tree->Branch("isBoson2", &isBoson2,"&isBoson/I");
     tree->Branch("px2", &px2, "px2/F");
     tree->Branch("py2", &py2, "py2/F");
     tree->Branch("pz2", &pz2, "pz2/F");
@@ -98,6 +98,10 @@ void Analyzer::ConvertTxtToRootFile(const string& inputFile, const TString& outp
                    >> particle_name2 >> mass2 >> isBoson2 >> px2 >> py2 >> pz2 >> p2 >> E2;
         // Fill one instance in the tree with branch values taking their values from addresses of dedicated variables
         tree->Fill();
+
+        cout << "counter: " << mass << endl;
+        cout << "particle_name: " << isBoson << endl;
+
     }
   }
   // Write our TTree in the currently opened ROOT file

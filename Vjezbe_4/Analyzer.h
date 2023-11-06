@@ -31,7 +31,7 @@ public:
 
     Analyzer();
     void AnalyzeData(const string& filename);
-    void ConvertTxtToRootFile(const string& inputFile, const TString& outputFile);
+    void ConvertTxtToRootFile(const string& inputFile,const TString& outputFile);
     
 
 };
