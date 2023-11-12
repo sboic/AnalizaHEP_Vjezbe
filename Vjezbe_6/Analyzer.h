@@ -8,6 +8,8 @@
 #ifndef Analyzer_h
 #define Analyzer_h
 
+
+//sve ove library dodaj za svaki slucaj
 #include <TROOT.h>
 #include <TChain.h>
 #include <TFile.h>
@@ -1440,21 +1442,25 @@ public :
    virtual void     Loop();
    virtual Bool_t   Notify();
    virtual void     Show(Long64_t entry = -1);
+ 
+   //odavde dodane stvari
 
    virtual void     PlotHistogram(TString input_file);
    virtual void     PlotMass();
 
  private:
-   TCanvas *c;
-   TString histo_name;
+   TCanvas *c; //platno
+   TString histo_name; //naziv
 
-   TH1F *LeptonPt_histo[4];
+   //crtezi
+   TH1F *LeptonPt_histo[4]; 
    TH1F *LeptonEta_histo[4];
    TH1F *LeptonPhi_histo[4];
    TH1F *LeptonBDT_histo[4];
 
    TH1F *Mass_histo;
 
+   //cetvervektori
    TLorentzVector lep0,lep1,lep2,lep3;
    TLorentzVector Z1, Z2;
    TLorentzVector Higgs;

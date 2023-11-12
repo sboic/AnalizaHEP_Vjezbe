@@ -45,7 +45,7 @@ void Analyzer::PlotHistogram(TString input_file_name)
 {
   c = new TCanvas("c","c",900,900);
 
-  c->Divide(2,2);
+  c->Divide(2,2); //dijeli na 2*2 prozora
 
   c->cd(1);
   gPad->SetLeftMargin(0.15);
@@ -74,7 +74,7 @@ void Analyzer::PlotHistogram(TString input_file_name)
 
   input_file = new TFile(input_file_name);
 
-   //skaliranje podataka
+   //skaliranje podataka po tezinama
   hCounters = (TH1F*)input_file->Get("ZZTree/Counters");
   gen_sum_weights = (Long64_t)hCounters->GetBinContent(40);
 
@@ -87,6 +87,7 @@ void Analyzer::PlotHistogram(TString input_file_name)
 
   Long64_t nbytes = 0, nb = 0;
 
+//uzlazimo u loop po dogadajima
    for (Long64_t jentry=0; jentry<nentries;jentry++) {
       Long64_t ientry = LoadTree(jentry);
       if (ientry < 0) break;
@@ -103,6 +104,7 @@ void Analyzer::PlotHistogram(TString input_file_name)
       }
 
       //Higgs boson reconstruction
+      //sva 4 leptona
       lep0.SetPtEtaPhiM(LepPt->at(0),LepEta->at(0),LepPhi->at(0),0.);
       lep1.SetPtEtaPhiM(LepPt->at(1),LepEta->at(1),LepPhi->at(1),0.);
       lep2.SetPtEtaPhiM(LepPt->at(2),LepEta->at(2),LepPhi->at(2),0.);
@@ -110,6 +112,7 @@ void Analyzer::PlotHistogram(TString input_file_name)
 
       if ((LepLepId->at(0) + LepLepId->at(1)) == 0 && (LepLepId->at(2) + LepLepId->at(3)) == 0)
       {
+        // ZZ
         Z1 = lep0 + lep1;
         Z2 = lep2 + lep3;
 
