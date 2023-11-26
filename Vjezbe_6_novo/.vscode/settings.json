@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "Analyzer.C": "cpp",
+        "new": "cpp"
+    },
+    "C_Cpp.errorSquiggles": "disabled"
+}
