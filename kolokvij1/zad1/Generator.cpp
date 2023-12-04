@@ -12,8 +12,8 @@ void Generator::GeneratePDF() {
     while (i < 100000) {
         x = -3 + (rand() / (RAND_MAX / 12.0));  // Generiranje slučajne vrijednosti x od -3 do 9
         y = static_cast<double>(rand()) / RAND_MAX; // Generiranje vrijednosti od 0 do 1
-        f = - ( x + 3 ) * ( x - 9 ) / 144.0; // racunamo vrijednost funkcije u x
-        //144 je normalizacija odnosno integral ove funkcije u danom intervalu
+        f = - ( x + 3 ) * ( x - 9 ) / 288.0; // racunamo vrijednost funkcije u x
+        //288 je normalizacija odnosno integral ove funkcije u danom intervalu
 
         // Provjera je li točka unutar funkcije f(x) = -(x+3)*(x-9)
         if (y < f) {
