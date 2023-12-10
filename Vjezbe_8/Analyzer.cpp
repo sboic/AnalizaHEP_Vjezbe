@@ -384,7 +384,7 @@ void Analyzer::PlotDkin(){
 
 void Analyzer::FitHiggsMass(){
  canvas = new TCanvas();
- canvas-> SetCanvasSize(900,900);
+ canvas-> SetCanvasSize(1200,800);
  canvas-> Divide(2,1);
  canvas-> cd(1);
 
@@ -395,16 +395,17 @@ void Analyzer::FitHiggsMass(){
  signal_function = new TF1("signal_function","[0]*[1] / ((x*x - [2]*[2])*(x*x - [2]*[2]) + 0.25*[1]*[1])",110,150);
  background_function = new TF1("background_function","[0] + [1]*x + [2]*x*x",110,150);
 
- signal_function->SetParameters(1000,10,125);
- background_function->SetParameters(1,-0.01,0.0001);
+ signal_function->SetParameters(1.53541e+04,4.50573e+02,1.24269e+02 ); // visina širina i centar mase 1000 10 125
+ background_function->SetParameters(5.30533e+01,-3.52892e-01,5.42850e-04);
 
  total_function = new TF1("total_function","[0]*[1] / ((x*x - [2]*[2])*(x*x - [2]*[2]) + 0.25*[1]*[1]) + [3] + [4]*x + [5]*x*x",110,150);
- total_function->SetParameters(1000,10,125,1,-0.01,0.0001);
+ total_function->SetParameters(1.53541e+04,4.50573e+02,1.24269e+02,5.30533e+01,-3.52892e-01,5.42850e-04);
 
  signal_function->SetLineColor(kRed);
  background_function->SetLineColor(kBlue);
  total_function->SetLineColor(kGreen);
 
+ signal_function->SetTitle("Fit");
  signal_function->Draw();
  background_function->Draw("SAME");
  total_function->Draw("SAME");
@@ -412,11 +413,11 @@ void Analyzer::FitHiggsMass(){
  canvas->cd(2);
  gPad->SetLeftMargin(0.15);
 
- fit_histo->Fit(total_function);
-
  fit_histo->SetAxisRange(110,150,"X");
  fit_histo->GetXaxis()->SetTitle("m_{4l} [GeV]");
  fit_histo->GetYaxis()->SetTitle("Events / 2 GeV");
+
+ fit_histo->Fit(total_function);
 
  gStyle->SetOptFit();
  fit_histo->Draw ("p E1 X0"); 
@@ -428,19 +429,20 @@ void Analyzer::FitHiggsMass(){
 
 void Analyzer::FitHiggsML(){
  canvas = new TCanvas();
- canvas-> SetCanvasSize(900,900);
+ canvas-> SetCanvasSize(1200,800);
 
  fit_histo = new TH1F("FitHiggsMass","FitHiggsMass", 50, 70., 170.);
  fit_histo->Add(Mass_histo_background);
  fit_histo->Add(Mass_histo_signal);
 
- total_function = new TF1("total_function","[0]*[1] / ((x*x - [2]*[2])*(x*x - [2]*[2]) + 0.25*[1]*[1]) + [3] + [4]*x + [5]*x*x",70,170);
- //total_function = new TF1 ("total_function", "([0]*[1])/(TMath::Power((x*x-[2]*[2]),2)+ 0.25*[1]*[1]) + ([3]*[4])/(TMath::Power((x*x-[5]*[5]),2) + 0.25*[4]*[4])+[6]+[7]*x+[8]*x*x",70,150);
- total_function->SetParameters(1000,10,125,1,-0.01,0.0001);
-
+//moramo dodati jos jednog BW na peak oko 90
+ total_function = new TF1("total_function","[0]*[1] / ((x*x - [2]*[2])*(x*x - [2]*[2]) + 0.25*[1]*[1]) + [3] + [4]*x + [5]*x*x + [6]*[7] / ((x*x - [8]*[8])*(x*x - [8]*[8]) + 0.25*[7]*[7])",70.,170.);
+ total_function->SetParameters(1.53541e+04,4.50573e+02,1.24269e+02,5.30533e+01,-3.52892e-01,5.42850e-04,3.11118e+04,7.89863e+02,9.07704e+01);
+ 
  fit_histo->Fit(total_function,"L");
-
+ 
  fit_histo->SetAxisRange(70,170,"X");
+ fit_histo->SetAxisRange(0,200,"Y");
  fit_histo->GetXaxis()->SetTitle("m_{4l} [GeV]");
  fit_histo->GetYaxis()->SetTitle("Events / 2 GeV");
 
