@@ -112,8 +112,8 @@ void Analyzer::LogLikelihood(){
    canvas->Print("Fit.zad4.pdf");
 
    tau = fit->GetMinimumX();
-   err_down = tau - fit->GetX(tau+1,0.00001,tau);
-   err_up = fit->GetX(tau+1,tau, 12) - tau;
+   err_down = tau - fit->GetX( fit->GetMinimum(0.00001,12) + 1,0.00001,tau);
+   err_up = fit->GetX( fit->GetMinimum(0.00001,12) + 1,tau,12) - tau;
 
    cout << "4.Zadatak Tau = " << tau << " - " << err_down << " + " << err_up << endl;
 }
