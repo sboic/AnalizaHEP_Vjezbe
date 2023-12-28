@@ -102,8 +102,6 @@ void Analyzer::DiceThrowing(){
         if(p > p1[r-1] && p < p2[r+1] ){
             r_in++;
         }
-        //cout << "p1 je " << p1[r-1] << " a p2 je " << p2[r+1] << endl;
-        cout << "P je " << p << " a r_in je " << r_in << endl;
     }
     cout << "Vjerojatnost da se u intervalu nalazi p je " << r_in/1000. << endl;
 }
