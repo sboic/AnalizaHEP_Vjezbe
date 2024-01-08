@@ -118,16 +118,19 @@ void Analyzer::HypothesisTesting(TString country,float mean, float dev){
 
    canvas->Print("HypothesisTesting_Italy_and_"+country+".pdf");
 
-   if (mean < 166.1){
+   if ( mean < 166.1){
       pH0 = histo1->Integral(0,histo1->FindBin(data));
       pH1 = histo2->Integral(histo2->FindBin(data),100);
 	}
 	else{
-      pH0 = histo1->Integral(0,histo1->FindBin(data));
+      pH0 = histo1->Integral(histo1->FindBin(data),100);
       pH1 = histo2->Integral(0,histo2->FindBin(data));
 	}
-   cout << "PH0 je " << pH0 << " a PH1 " << pH1 << endl;
-   cout << "Alternativna hipoteza drzava " << country << " se moze odbaciti s " << (1 - pH1 / pH0) * 100 << " \% CL." << endl;
+   cout << "DEBUG: pH0 = " << pH0 << ", pH1 = " << pH1 << endl;
+   cout << "Alternativna hipoteza drzava " << country << " se moze odbaciti s " << (1 - std::min(static_cast<double>(pH1 / pH0), 1.0)) * 100 << " \% CL." << endl;
 
 
+   delete histo1;
+   delete histo2;
+   delete canvas;
 }
