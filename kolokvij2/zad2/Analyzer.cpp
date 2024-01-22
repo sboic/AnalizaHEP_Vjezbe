@@ -85,7 +85,7 @@ void Analyzer::PValue(){
    canvas = new TCanvas();
    canvas->SetCanvasSize(900,900);
 
-   histo0 = new TH1F("Data","Data",100,0,60);
+   histo3 = new TH1F("Data","Data",100,0,60);
    Poisson = new TF1("Poisson","TMath::Poisson(x,[0])",0,1000);
    Poisson->SetParameter(0,35.);
    Poisson->SetParName(0,"Lambda");
@@ -94,17 +94,17 @@ void Analyzer::PValue(){
    for (Long64_t jentry = 0; jentry < fChain->GetEntries(); jentry++) {
         LoadTree(jentry);
         fChain->GetEntry(jentry);
-        histo0->Fill(BrojSudara);
+        histo3->Fill(BrojSudara);
         data += BrojSudara;
    }
    data /= fChain->GetEntries();
 
-   histo0->Fit(Poisson,"");
+   histo3->Fit(Poisson,"");
    gStyle->SetOptStat(0);
-   histo0->Scale(1./histo0->Integral());
-   histo0->Draw("HISTO");
+   histo3->Scale(1./histo3->Integral());
+   histo3->Draw("HISTO");
 
-   p_value = histo0->Integral(0,histo0->FindBin(data));
+   p_value = histo3->Integral(0,histo3->FindBin(data));
    cout << "Lambda je " << Poisson->GetParameter(0) << endl;
    cout << "P-value je " << p_value << endl;
 

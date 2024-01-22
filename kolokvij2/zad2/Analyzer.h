@@ -68,7 +68,7 @@ public :
 private:
    TCanvas *canvas;
    TRandom3 *rand;
-   TH1F *histo0, *histo1;
+   TH1F *histo0, *histo1, *histo3;
    float x1,x2;
    float sum1;
    TLegend *legend;
